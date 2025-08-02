@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Surprise For You ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Nunito', sans-serif;
+        background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+        color: #4B0082; /* Indigo for better contrast */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        /* overflow: hidden; Hide scrollbars from hearts */
+        text-align: center;
+        padding: 1rem 0;
+    }
+
+    .container {
+        background: rgba(255, 255, 255, 0.85);
+        padding: 2rem 3rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        max-width: 900px;
+        width: 90%;
+        z-index: 10;
+        transition: all 0.5s ease-in-out;
+    }
+
+    /* Sections and Transitions */
+    .content-section {
+        animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Typography */
+    h1, h2 {
+        font-family: 'Pacifico', cursive;
+        margin-bottom: 1rem;
+        color: #C71585; /* MediumVioletRed */
+    }
+
+    h1 {
+        font-size: clamp(1.8rem, 5vw, 2.8rem);
+    }
+
+    h2 {
+        font-size: clamp(1.5rem, 4vw, 2.2rem);
+    }
+
+    p {
+        font-size: clamp(1rem, 2.5vw, 1.1rem);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+
+    .subtitle {
+        font-weight: 700;
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+    }
+
+    /* Buttons */
+    .btn {
+        font-family: 'Nunito', sans-serif;
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+        border: none;
+        border-radius: 50px;
+        background-color: #ff69b4; /* HotPink */
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+        font-weight: 700;
+    }
+
+    .btn:hover {
+        transform: translateY(-3px);
+        background-color: #ff1493; /* DeepPink */
+        box-shadow: 0 6px 20px rgba(255, 20, 147, 0.5);
+    }
+
+    .button-group {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
+        flex-wrap: wrap;
+    }
+
+    /* Card Grid Layout */
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    /* --- FLIP CARD STYLES --- */
+
+    .flip-card {
+        background-color: transparent;
+        min-height: 180px;
+        perspective: 1000px; /* 3D effect */
+    }
+
+    .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+    }
+
+    .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+    }
+
+    .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden; /* Safari */
+        backface-visibility: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1.5rem;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        font-size: 1.1rem;
+    }
+
+    .flip-card-front {
+        background-color: #ffffff;
+    }
+
+    .flip-card-back {
+        background-color: #ffc0cb; /* Pink */
+        color: #4B0082;
+        transform: rotateY(180deg);
+        /* The padding was pushing the image out, remove it for the back card */
+        padding: 0; 
+    }
+    
+    /* --- THIS IS THE FIX --- */
+    .flip-card-back img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* This makes the image cover the card without stretching */
+        border-radius: 15px; /* Match the card's rounded corners */
+    }
+    /* --- END OF FIX --- */
+
+    .photo-card {
+        min-height: 150px;
+        background: #ffffff;
+        padding: 1.5rem;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease;
+        font-size: 1.1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .photo-card:hover {
+         transform: scale(1.05) rotate(2deg);
+    }
+
+    /* Question Box */
+    .question-box {
+        background: #fff0f5; /* LavenderBlush */
+        padding: 2rem;
+        border-radius: 15px;
+        border: 2px solid #ffb6c1; /* LightPink */
+    }
+
+    .question-box p {
+        font-size: clamp(1.2rem, 3vw, 1.4rem);
+        font-weight: 700;
+    }
+
+    /* Floating Hearts */
+    .heart-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .heart {
+        position: absolute;
+        bottom: -50px;
+        font-size: 2rem;
+        color: #ff69b4;
+        animation: floatUp 5s ease-in-out infinite;
+        opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 0.7;
+        }
+        100% {
+            transform: translateY(-100vh) rotate(720deg);
+            opacity: 0;
+        }
+    }
+
+    #section-3 img{
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        object-position: top;
+    }
+</style>
+<body>
+
+    <div class="heart-container" id="heart-container"></div>
+
+    <main class="container">
+        <section id="section-1" class="content-section">
+            <h1>For my Little Cutipie Chiku🥰</h1>
+            <p class="subtitle">Hi Pookie,</p>
+            <p>Baby made something for you<br>I hope you like it🥺 <strong>I Love you so muchhh🥰</strong></p>
+            <button id="begin-btn" class="btn">Let's Begin The Journey &rarr;</button>
+        </section>
+
+        <section id="section-2" class="content-section hidden">
+            <h2>Reasons Why You're the Best ✨</h2>
+            <div class="card-grid">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">💖Our GrandVenice pic</div>
+                        <div class="flip-card-back">
+                            <!-- Make sure your image path is correct -->
+                            <img src="/IMG_8685.jpg" alt="A special memory">
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">Saje Dhaje Babies🥺</div>
+                        <div class="flip-card-back"><img src="/WhatsApp Image 2025-08-03 at 03.29.45_b6623fc6.jpg" alt=""></div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">📣Two babies posing lovely</div>
+                        <div class="flip-card-back"><img src="/IMG_8746.jpg" alt=""></div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">🥰 My Birthday Kissie💋</div>
+                        <div class="flip-card-back"><img src="/kissi.jpg" alt=""></div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">✨ KalkaJi mandir Memories</div>
+                        <div class="flip-card-back"><img style="object-fit: cover; object-position:top;" src="/WhatsApp Image 2025-08-03 at 03.29.44_2264ff1a.jpg" alt=""></div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">🙈 Ohh our Photoshoot📸</div>
+                        <div class="flip-card-back"><img style="object-fit: cover; object-position:top;" src="/WhatsApp Image 2025-08-03 at 03.29.43_c35eff4f.jpg" alt=""></div>
+                    </div>
+                </div>
+            </div>
+            <button id="reasons-to-moments-btn" class="btn">Click kro bubu🥰🥰</button>
+        </section>
+
+        <section id="section-3" class="content-section hidden">
+            <h2>Our Moments Together 📸</h2>
+            <div class="card-grid">
+                <div class="photo-card"><img src="./WhatsApp Image 2025-08-03 at 03.53.20_715d81ee.jpg" alt="">Machkund meeting🥹</div>
+                <div class="photo-card"><img src="./WhatsApp Image 2025-08-03 at 03.53.20_93f20079.jpg" alt="">Chupke Chupke milna🥺</div>
+                <div class="photo-card"><img src="./WhatsApp Image 2025-08-03 at 03.53.21_c450dbcf.jpg" alt="">Our Vedvan trip🙈</div>
+                <div class="photo-card"><img src="./WhatsApp Image 2025-08-03 at 03.53.21_d2c61130.jpg" alt="">Went Gurudwara Together🥰</div>
+                <div class="photo-card"><img src="./WhatsApp Image 2025-08-03 at 03.53.22_35f32462.jpg" alt="">Babu ka ghar🏡</div>
+                <div class="photo-card"><img src="./WhatsApp Image 2025-08-03 at 03.53.22_e0fd1322.jpg" alt="">First Mall Trip🙈</div>
+            </div>
+            <button id="moments-to-question-btn" class="btn">I have a question for you...</button>
+        </section>
+
+        <section id="section-4" class="content-section hidden">
+            <h2>One Question For You...</h2>
+            <div class="question-box">
+                <p>Will you always be my girl, forever and ever? ❤️</p>
+                <div class="button-group">
+                    <button id="yes-btn" class="btn">Yes, my love 🥰</button>
+                    <button id="no-btn" class="btn">No Bubu Dont do this🥺💘</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-5" class="content-section hidden">
+            <h2>I Knew you wouldn't say No 🥹❤️</h2>
+            <p>I love you more than words can say ❤️ Mahhh Bachaaa💋🙈</p>
+        </section>
+    </main>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('.content-section');
+        const beginBtn = document.getElementById('begin-btn');
+        const reasonsToMomentsBtn = document.getElementById('reasons-to-moments-btn');
+        const momentsToQuestionBtn = document.getElementById('moments-to-question-btn');
+        const yesBtn = document.getElementById('yes-btn');
+        const noBtn = document.getElementById('no-btn');
+        const heartContainer = document.getElementById('heart-container');
+
+        function showSection(sectionIndex) {
+            sections.forEach((section, index) => {
+                if (index === sectionIndex) {
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+        }
+
+        beginBtn.addEventListener('click', () => showSection(1));
+        reasonsToMomentsBtn.addEventListener('click', () => showSection(2));
+        momentsToQuestionBtn.addEventListener('click', () => showSection(3));
+        yesBtn.addEventListener('click', () => {
+            showSection(4);
+            setInterval(createHeart, 100);
+        });
+
+        noBtn.addEventListener('mouseover', () => {
+            const buttonGroup = noBtn.parentElement;
+            const container = buttonGroup.closest('.question-box');
+            const containerRect = container.getBoundingClientRect();
+            const btnRect = noBtn.getBoundingClientRect();
+
+            const x = Math.random() * (containerRect.width - btnRect.width);
+            const y = Math.random() * (containerRect.height - btnRect.height);
+
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+        });
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            heart.innerText = '❤️';
+            heartContainer.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 1000);
+    });
+</script>
+</body>
+</html>
